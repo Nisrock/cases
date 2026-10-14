@@ -154,7 +154,8 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
 /* easter egg */
-.paw{display:inline-block;margin-left:10px;opacity:.28;cursor:pointer;font-size:14px;transition:opacity .2s,transform .2s;text-decoration:none;user-select:none}
+.paw{display:inline-block;margin-left:10px;opacity:.35;cursor:pointer;transition:opacity .2s,transform .2s;text-decoration:none;user-select:none;vertical-align:middle;line-height:0}
+.paw svg{width:16px;height:16px;fill:currentColor;display:inline-block}
 .paw:hover{opacity:1;transform:rotate(-12deg) scale(1.15)}
 .egg{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .egg.open{display:flex}
@@ -363,7 +364,7 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
           <li>Нецелевых (команда меньше 5 или оборот ниже порога) бот мягко отсеивает и закрывает сделку автоматически.</li>
           <li>Статистика: воронка по диалогам, медианы ответа по менеджерам, источники с раскрытием до страницы и переписки.</li>
           <li>Ловушка, которую поймал: автоназначение ответственного в CRM система считала перехватом человеком и глушила бота. Закрыто списком служебных пользователей и окном 60 секунд.</li>
-          <li style="list-style:none;margin-left:-18px;color:var(--mut);font-size:13.5px">Дочитали досюда? Значит, вы из тех, кто изучает, а не листает. Для вас тут кое-что есть <a class="paw" href="#" data-egg title="для тех, кто читает внимательно">🐾</a></li>
+          <li style="list-style:none;margin-left:-18px;color:var(--mut);font-size:13.5px">Дочитали досюда? Значит, вы из тех, кто изучает, а не листает. Для вас тут кое-что есть <a class="paw" href="#" data-egg title="для тех, кто читает внимательно"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="6" cy="9.5" rx="2.1" ry="2.8"/><ellipse cx="18" cy="9.5" rx="2.1" ry="2.8"/><ellipse cx="9.6" cy="5.4" rx="2.1" ry="2.9"/><ellipse cx="14.4" cy="5.4" rx="2.1" ry="2.9"/><path d="M12 10.2c-3.3 0-6.2 2.9-6.2 5.9 0 2 1.4 3.4 3.3 3.4 1.1 0 1.9-.5 2.9-.5s1.8.5 2.9.5c1.9 0 3.3-1.4 3.3-3.4 0-3-2.9-5.9-6.2-5.9z"/></svg></a></li>
         </ul>
         <div class="stack"><i>Node.js</i><i>Cloudflare Pages + D1</i><i>amoCRM API</i><i>amojo</i><i>Workers AI / Claude</i><i>Claude Agent SDK</i><i>SQL</i></div>
       </div>
@@ -373,7 +374,7 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 
 <section class="chapter" id="shtab">
   <div class="wrap">
-    <div class="kicker rv">Кейс 03 · Центр управления компанией <a class="paw" href="#" data-egg title="для тех, кто читает внимательно">🐾</a></div>
+    <div class="kicker rv">Кейс 03 · Центр управления компанией <a class="paw" href="#" data-egg title="для тех, кто читает внимательно"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="6" cy="9.5" rx="2.1" ry="2.8"/><ellipse cx="18" cy="9.5" rx="2.1" ry="2.8"/><ellipse cx="9.6" cy="5.4" rx="2.1" ry="2.9"/><ellipse cx="14.4" cy="5.4" rx="2.1" ry="2.9"/><path d="M12 10.2c-3.3 0-6.2 2.9-6.2 5.9 0 2 1.4 3.4 3.3 3.4 1.1 0 1.9-.5 2.9-.5s1.8.5 2.9.5c1.9 0 3.3-1.4 3.3-3.4 0-3-2.9-5.9-6.2-5.9z"/></svg></a></div>
     <h2 class="rv">Один экран у собственника вместо десятка таблиц. Подрядчики просили 150 000 ₽ в месяц.</h2>
     <p class="problem rv">Цифры жили в Google-таблицах, CRM, АТС и Метрике. Собственник хотел план и факт в одном месте и ответы на вопросы без аналитика.</p>
 
@@ -516,13 +517,13 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
     <div class="feed">
       <div class="cnt" id="eggCnt">1 / 5</div>
       <div class="scroller" id="eggFeed">
-        <div class="slide"><video src="cats/cat1.mp4" muted loop playsinline preload="metadata"></video></div>
-        <div class="slide"><video src="cats/cat2.mp4" muted loop playsinline preload="metadata"></video></div>
-        <div class="slide"><video src="cats/cat3.mp4" muted loop playsinline preload="metadata"></video></div>
-        <div class="slide"><video src="cats/cat4.mp4" muted loop playsinline preload="metadata"></video></div>
-        <div class="slide"><video src="cats/cat5.mp4" muted loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat1.mp4" loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat2.mp4" loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat3.mp4" loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat4.mp4" loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat5.mp4" loop playsinline preload="metadata"></video></div>
       </div>
-      <div class="ctr"><button id="eggUp" aria-label="Предыдущий">↑</button><button id="eggDown" aria-label="Следующий">↓</button></div>
+      <div class="ctr"><button id="eggMute" aria-label="Звук" title="Звук">🔊</button><button id="eggUp" aria-label="Предыдущий">↑</button><button id="eggDown" aria-label="Следующий">↓</button></div>
     </div>
     <div class="txt">
       <h3>Вы дошли до середины. Сделайте паузу и полюбуйтесь котиками.</h3>
@@ -595,7 +596,9 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 
   /* ---------- пасхалка ---------- */
   var egg=document.getElementById('egg'),feed=document.getElementById('eggFeed'),slides=feed.querySelectorAll('.slide'),cnt=document.getElementById('eggCnt'),cur=0;
-  function playCur(){slides.forEach(function(s,i){var v=s.querySelector('video');if(i===cur){v.play().catch(function(){});}else{v.pause();}});cnt.textContent=(cur+1)+' / '+slides.length;}
+  var soundOn=true,muteBtn=document.getElementById('eggMute');function applyMute(){slides.forEach(function(s){s.querySelector('video').muted=!soundOn;});muteBtn.textContent=soundOn?'🔊':'🔇';}
+  function playCur(){slides.forEach(function(s,i){var v=s.querySelector('video');v.muted=!soundOn;if(i===cur){v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){v.muted=true;soundOn=false;applyMute();v.play().catch(function(){});});}else{v.pause();}});cnt.textContent=(cur+1)+' / '+slides.length;}
+  muteBtn.addEventListener('click',function(){soundOn=!soundOn;applyMute();track('easter_sound',soundOn?'on':'off');});
   function openEgg(src){egg.classList.add('open');document.body.style.overflow='hidden';cur=0;feed.scrollTop=0;playCur();track('easter_open',src);}
   function closeEgg(){egg.classList.remove('open');document.body.style.overflow='';slides.forEach(function(s){s.querySelector('video').pause();});}
   document.querySelectorAll('[data-egg]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openEgg(a.closest('section').id);});});
