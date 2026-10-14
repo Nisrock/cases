@@ -154,36 +154,43 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
 /* easter egg */
-.paw{display:inline-block;margin-left:10px;opacity:.35;cursor:pointer;transition:opacity .2s,transform .2s;text-decoration:none;user-select:none;vertical-align:middle;line-height:0}
+.paw{display:inline-block;margin-left:10px;opacity:.55;cursor:pointer;transition:opacity .2s,transform .2s;text-decoration:none;user-select:none;vertical-align:middle;line-height:0}
+.paw:hover{opacity:1;transform:rotate(-12deg) scale(1.15)}
 .paw svg{width:16px;height:16px;fill:#1d1d1f;display:inline-block}
 :root[data-theme="dark"] .paw svg{fill:#ff6fae}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .paw svg{fill:#ff6fae}}
-.paw{opacity:.55}
-.paw:hover{opacity:1;transform:rotate(-12deg) scale(1.15)}
 .egg{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .egg.open{display:flex}
-.egg .box{position:relative;width:min(960px,100%);max-height:min(92vh,760px);background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:360px 1fr;overflow:hidden;animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+.egg .box{position:relative;width:min(960px,100%);height:min(92vh,760px);background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:360px 1fr;overflow:hidden;animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
-.egg .close{position:absolute;top:12px;right:12px;z-index:3;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:20px;cursor:pointer;display:grid;place-items:center;padding:0}
-.feed{position:relative;background:#000;height:min(92vh,760px)}
-.feed .scroller{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none}
-.feed .scroller::-webkit-scrollbar{display:none}
-.feed .slide{height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:grid;place-items:center;position:relative}
-.feed video{width:100%;height:100%;object-fit:cover}
-.feed .ctr{position:absolute;right:12px;bottom:14px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 6px;border-radius:999px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.feed .ctr button{width:36px;height:36px;border-radius:50%;border:0;background:transparent;color:#fff;font-size:17px;cursor:pointer;display:grid;place-items:center;padding:0}
-.feed .ctr button:hover{background:rgba(255,255,255,.15)}
-.feed .ctr input[type=range]{writing-mode:vertical-lr;direction:rtl;width:16px;height:96px;margin:2px 0;accent-color:#fff;cursor:pointer}
-.feed .ctr .pct{font-size:11px;color:#fff;opacity:.9;min-width:0;line-height:1}
+.egg .close{position:absolute;top:12px;right:12px;z-index:5;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(30,30,32,.55);backdrop-filter:blur(12px);color:#fff;cursor:pointer;display:grid;place-items:center;padding:0}
+.egg .close svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+.feed{position:relative;background:#000;height:100%;overflow:hidden;touch-action:none}
+.feed video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .25s}
+.feed video.sw{opacity:0}
+.feed .cnt{position:absolute;left:14px;top:14px;z-index:2;font-size:12px;color:#fff;background:rgba(0,0,0,.45);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
 .feed .replay{position:absolute;inset:0;z-index:3;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);color:#fff;font-size:14px;text-align:center;padding:20px}
 .feed .replay.show{display:flex}
-.feed .cnt{position:absolute;left:14px;top:14px;z-index:2;font-size:12px;color:#fff;background:rgba(0,0,0,.45);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
+.feed .ctrls{position:absolute;right:12px;bottom:14px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px}
+.feed .ic{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
+.feed .vbar{position:relative;width:40px;height:150px;border-radius:20px;overflow:hidden;background:rgba(30,30,32,.55);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 30px rgba(0,0,0,.35);cursor:pointer}
+.feed .vbar .fill{position:absolute;left:0;right:0;bottom:0;height:10%;background:#fff;transition:height .08s}
+.feed .vbar .ic{position:absolute;left:50%;bottom:11px;transform:translateX(-50%);width:18px;height:18px;mix-blend-mode:difference;pointer-events:none}
+.feed .vbar .ic .body{fill:#fff;stroke:none}
+.feed .vbar .ic .x{display:none}
+.feed .vbar.muted .ic .w1,.feed .vbar.muted .ic .w2{display:none}
+.feed .vbar.muted .ic .x{display:block}
+.feed .vbar.low .ic .w2{display:none}
+.feed .vbar input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;writing-mode:vertical-lr;direction:rtl;-webkit-appearance:none;appearance:none}
+.feed .rbtn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;background:rgba(30,30,32,.55);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 30px rgba(0,0,0,.35);color:#fff}
+.feed .rbtn:active{transform:scale(.94)}
 .egg .txt{padding:36px 34px 28px;overflow-y:auto}
 .egg h3{font-size:26px;font-weight:800;line-height:1.15;margin:0 0 12px}
 .egg p{margin:0 0 12px;color:var(--fg2);font-size:15.5px}
 .egg form{margin-top:18px;display:grid;gap:10px}
 .egg .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.egg input,.egg textarea,.egg select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--fg);font:inherit;font-size:15px}
+.egg .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.egg input,.egg textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--fg);font:inherit;font-size:15px}
 .egg textarea{min-height:110px;resize:vertical}
 .egg .seg{display:flex;gap:6px;flex-wrap:wrap}
 .egg .seg label{padding:8px 14px;border-radius:999px;border:1px solid var(--line);cursor:pointer;font-size:14px;color:var(--fg2)}
@@ -192,6 +199,32 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 .egg .seg label:has(input:checked){border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent)}
 .egg .ok{display:none;padding:18px;border-radius:14px;background:color-mix(in srgb,var(--acc) 12%,transparent);color:var(--fg);font-weight:600}
 .egg .err{color:#e5484d;font-size:14px;min-height:18px}
+/* мобильная: видео на весь экран, панель поверх, без прокрутки */
+@media(max-width:760px){
+  .egg{padding:0}
+  .egg .box{display:block;width:100%;height:100vh;height:100dvh;border-radius:0;border:0}
+  .feed{position:absolute;inset:0;height:auto}
+  .feed .ctrls{right:10px;bottom:auto;top:50%;transform:translateY(-70%)}
+  .feed .vbar{width:34px;height:120px}
+  .feed .rbtn{width:36px;height:36px}
+  .feed .cnt{top:12px;left:12px}
+  .egg .close{top:10px;right:10px}
+  .egg .txt{position:absolute;left:0;right:0;bottom:0;padding:16px 14px calc(14px + env(safe-area-inset-bottom));overflow:visible;background:linear-gradient(180deg,rgba(10,10,12,0) 0%,rgba(10,10,12,.85) 18%,rgba(10,10,12,.96) 100%);color:#f5f5f7;max-height:62vh;max-height:62dvh}
+  .egg .txt h3{font-size:19px;margin-bottom:6px;color:#fff}
+  .egg .txt p{font-size:13.5px;color:#d6d6db;margin-bottom:6px}
+  .egg .long{display:none!important}
+  .egg form{margin-top:8px;gap:8px}
+  .egg .row{grid-template-columns:1fr}
+  .egg input,.egg textarea{padding:10px 12px;font-size:16px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);color:#fff}
+  .egg input::placeholder,.egg textarea::placeholder{color:rgba(255,255,255,.55)}
+  .egg textarea{min-height:64px;max-height:64px;resize:none}
+  .egg .seg label{padding:6px 11px;font-size:13px;color:#ddd;border-color:rgba(255,255,255,.2)}
+  .egg .seg input:checked+span{color:#fff}
+  .egg .seg label:has(input:checked){border-color:#fff;background:rgba(255,255,255,.18)}
+  .egg .err{min-height:0;font-size:13px}
+  .egg .btn.primary{padding:11px 18px;font-size:14px}
+}
+
 /* print / PDF */
 @media print{
   :root{--bg:#fff;--bg2:#fff;--fg:#111;--fg2:#444;--mut:#777;--line:#ddd;--card:#fff;--card2:#f3f3f5;--acc:#0a5bd3;--shadow:none}
@@ -493,39 +526,43 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 
 <div class="egg" id="egg" role="dialog" aria-modal="true" aria-label="Пауза с котиками">
   <div class="box">
-    <button class="close" id="eggClose" aria-label="Закрыть">×</button>
-    <div class="feed">
+    <button class="close" id="eggClose" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="feed" id="eggFeed">
+      <video id="eggVideo" playsinline webkit-playsinline preload="auto"></video>
       <div class="cnt" id="eggCnt">1 / 5</div>
-      <div class="scroller" id="eggFeed">
-        <div class="slide"><video src="cats/cat1.mp4" playsinline preload="metadata"></video></div>
-        <div class="slide"><video src="cats/cat2.mp4" playsinline preload="metadata"></video></div>
-        <div class="slide"><video src="cats/cat3.mp4" playsinline preload="metadata"></video></div>
-        <div class="slide"><video src="cats/cat4.mp4" playsinline preload="metadata"></video></div>
-        <div class="slide"><video src="cats/cat5.mp4" playsinline preload="metadata"></video></div>
+      <div class="replay" id="eggReplay"><button class="btn primary" id="eggReplayBtn">Повторить</button><span>Коты закончились, а предложение рядом нет.</span></div>
+      <div class="ctrls">
+        <div class="vbar" id="eggVbar" title="Громкость">
+          <div class="fill" id="eggFill"></div>
+          <svg class="ic" id="eggVolIcon" viewBox="0 0 24 24"><path class="body" d="M4 9.5v5h3.2L12 18.6V5.4L7.2 9.5H4z"/><path class="w1" d="M15.5 9.2a3.6 3.6 0 0 1 0 5.6"/><path class="w2" d="M18 6.6a7 7 0 0 1 0 10.8"/><path class="x" d="M15.5 10l4 4M19.5 10l-4 4"/></svg>
+          <input type="range" id="eggVol" min="0" max="100" value="10" aria-label="Громкость">
+        </div>
+        <button class="rbtn" id="eggUp" aria-label="Предыдущий"><svg class="ic" viewBox="0 0 24 24"><path d="M7 14.5l5-5 5 5"/></svg></button>
+        <button class="rbtn" id="eggDown" aria-label="Следующий"><svg class="ic" viewBox="0 0 24 24"><path d="M7 9.5l5 5 5-5"/></svg></button>
       </div>
-      <div class="replay" id="eggReplay"><button class="btn primary" id="eggReplayBtn">Повторить</button><span>Коты закончились, а предложение ниже нет.</span></div>
-      <div class="ctr"><button id="eggUp" aria-label="Предыдущий">↑</button><button id="eggDown" aria-label="Следующий">↓</button><button id="eggMute" aria-label="Звук" title="Выключить звук"><span id="eggVolIcon">🔊</span></button><input type="range" id="eggVol" min="0" max="100" value="10" aria-label="Громкость"><span class="pct" id="eggVolVal">10%</span></div>
     </div>
     <div class="txt">
       <h3>Вы дошли до середины. Сделайте паузу и полюбуйтесь котиками.</h3>
-      <p>Листайте ленту, как в TikTok. А пока коты делают своё дело, предложение в благодарность за внимательность.</p>
-      <p><b>Если вы HR или рекрутер:</b> напишите прямо здесь одну рутинную задачу, которая съедает ваше время. Я попробую её автоматизировать или напишу, как это сделать. Бесплатно, потому что вы дочитали.</p>
-      <p><b>Если вы основатель или руководитель:</b> тоже пишите. Разберу, где в вашем процессе ИИ сэкономит деньги, а где не стоит и пробовать.</p>
+      <p class="long">Листайте ленту, как в TikTok. А пока коты делают своё дело, предложение в благодарность за внимательность.</p>
+      <p><b>Если вы HR или рекрутер:</b> напишите <span class="long">прямо здесь </span>одну рутинную задачу, которая съедает ваше время. Я попробую её автоматизировать или напишу, как это сделать. Бесплатно, потому что вы дочитали.</p>
+      <p class="long"><b>Если вы основатель или руководитель:</b> тоже пишите. Разберу, где в вашем процессе ИИ сэкономит деньги, а где не стоит и пробовать.</p>
       <form id="eggForm" novalidate>
         <div class="seg">
           <label><input type="radio" name="role" value="HR / рекрутер" checked><span>HR / рекрутер</span></label>
-          <label><input type="radio" name="role" value="Основатель / руководитель"><span>Основатель / руководитель</span></label>
+          <label><input type="radio" name="role" value="Основатель / руководитель"><span>Основатель</span></label>
           <label><input type="radio" name="role" value="Другое"><span>Другое</span></label>
         </div>
         <div class="row">
-          <input name="name" placeholder="Как вас зовут" autocomplete="name">
+          <input name="name" placeholder="Как вас зовут" autocomplete="name" class="long">
           <input name="contact" placeholder="Telegram или почта для ответа" autocomplete="email" required>
         </div>
         <textarea name="task" placeholder="Рутинная задача: что делаете руками, как часто, в каких инструментах" required></textarea>
         <div class="err" id="eggErr"></div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <div class="actions">
           <button class="btn primary" type="submit" id="eggSend">Отправить задачу</button>
-          <span style="font-size:13px;color:var(--mut)">Отвечу в течение двух дней</span>
+          <span class="long" style="font-size:13px;color:var(--mut)">Отвечу в течение двух дней</span>
         </div>
       </form>
       <div class="ok" id="eggOk">Получил. Спасибо за внимательность, отвечу лично. А котики остаются с вами.</div>
@@ -571,27 +608,33 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
   addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush();});
 
   /* ---------- пасхалка ---------- */
-  var egg=document.getElementById('egg'),feed=document.getElementById('eggFeed'),slides=feed.querySelectorAll('.slide'),cnt=document.getElementById('eggCnt'),cur=0;
-  var soundOn=true,muteBtn=document.getElementById('eggMute'),vol=document.getElementById('eggVol'),volVal=document.getElementById('eggVolVal'),volIcon=document.getElementById('eggVolIcon'),volume=0.1;
-  function applyMute(){slides.forEach(function(s){var v=s.querySelector('video');v.muted=!soundOn;v.volume=volume;});volIcon.textContent=(!soundOn||volume===0)?'🔇':(volume<0.4?'🔉':'🔊');muteBtn.title=soundOn?'Выключить звук':'Включить звук';volVal.textContent=Math.round(volume*100)+'%';}
-  vol.addEventListener('input',function(){volume=vol.value/100;if(volume>0&&!soundOn){soundOn=true;}applyMute();});
-  vol.addEventListener('change',function(){track('easter_volume',Math.round(volume*100));});
-  function playCur(){slides.forEach(function(s,i){var v=s.querySelector('video');v.muted=!soundOn;v.volume=volume;if(i===cur){v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){v.muted=true;soundOn=false;applyMute();v.play().catch(function(){});});}else{v.pause();}});cnt.textContent=(cur+1)+' / '+slides.length;}
-  muteBtn.addEventListener('click',function(){soundOn=!soundOn;applyMute();track('easter_sound',soundOn?'on':'off');});
-  var replay=document.getElementById('eggReplay');
-  slides.forEach(function(s,i){s.querySelector('video').addEventListener('ended',function(){if(i<slides.length-1){go(1);}else{replay.classList.add('show');track('easter_end','');}});});
-  document.getElementById('eggReplayBtn').addEventListener('click',function(){replay.classList.remove('show');cur=0;feed.scrollTo({top:0,behavior:'instant'});playCur();});
-  function openEgg(src){document.getElementById('eggReplay').classList.remove('show');egg.classList.add('open');document.body.style.overflow='hidden';cur=0;feed.scrollTop=0;playCur();track('easter_open',src);}
-  function closeEgg(){egg.classList.remove('open');document.body.style.overflow='';slides.forEach(function(s){s.querySelector('video').pause();});}
+  var SRCS=['cats/cat1.mp4','cats/cat2.mp4','cats/cat3.mp4','cats/cat4.mp4','cats/cat5.mp4'];
+  var egg=document.getElementById('egg'),feed=document.getElementById('eggFeed'),video=document.getElementById('eggVideo'),cnt=document.getElementById('eggCnt'),replay=document.getElementById('eggReplay'),cur=0;
+  var vbar=document.getElementById('eggVbar'),fill=document.getElementById('eggFill'),vol=document.getElementById('eggVol'),soundOn=true,volume=0.1;
+  function paintVol(){fill.style.height=Math.round(volume*100)+'%';vbar.classList.toggle('muted',!soundOn||volume===0);vbar.classList.toggle('low',soundOn&&volume>0&&volume<0.4);video.volume=volume;video.muted=!soundOn;}
+  function playVideo(){var p=video.play();if(p&&p.catch)p.catch(function(){soundOn=false;paintVol();video.play().catch(function(){});});}
+  function show(i,src){cur=i;cnt.textContent=(cur+1)+' / '+SRCS.length;video.classList.add('sw');video.src=SRCS[cur];video.load();paintVol();playVideo();setTimeout(function(){video.classList.remove('sw');},200);if(src)track('easter_swipe',cur+1);}
+  function openEgg(src){replay.classList.remove('show');egg.classList.add('open');document.body.style.overflow='hidden';soundOn=true;show(0);track('easter_open',src);}
+  function closeEgg(){egg.classList.remove('open');document.body.style.overflow='';video.pause();}
+  function go(d){var n=cur+d;if(n<0||n>=SRCS.length)return;replay.classList.remove('show');show(n,true);}
   document.querySelectorAll('[data-egg]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openEgg(a.closest('section').id);});});
   document.getElementById('eggClose').addEventListener('click',closeEgg);
   egg.addEventListener('click',function(e){if(e.target===egg)closeEgg();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&egg.classList.contains('open'))closeEgg();});
+  document.addEventListener('keydown',function(e){if(!egg.classList.contains('open'))return;if(e.key==='Escape')closeEgg();if(e.key==='ArrowDown'){e.preventDefault();go(1);}if(e.key==='ArrowUp'){e.preventDefault();go(-1);}});
   var typed='';document.addEventListener('keydown',function(e){if(e.key.length!==1)return;typed=(typed+e.key.toLowerCase()).slice(-3);if((typed==='cat'||typed==='кот')&&!egg.classList.contains('open'))openEgg('keys');});
-  function go(d){var n=Math.max(0,Math.min(slides.length-1,cur+d));if(n===cur)return;cur=n;slides[cur].scrollIntoView({behavior:'smooth',block:'start'});playCur();track('easter_swipe',cur+1);}
   document.getElementById('eggUp').addEventListener('click',function(){go(-1);});
   document.getElementById('eggDown').addEventListener('click',function(){go(1);});
-  var st;feed.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var i=Math.round(feed.scrollTop/feed.clientHeight);if(i!==cur){cur=i;playCur();track('easter_swipe',cur+1);}},120);},{passive:true});
+  video.addEventListener('ended',function(){if(cur<SRCS.length-1){go(1);}else{replay.classList.add('show');track('easter_end','');}});
+  document.getElementById('eggReplayBtn').addEventListener('click',function(){replay.classList.remove('show');show(0);});
+  /* свайп и колесо */
+  var ty=null;feed.addEventListener('touchstart',function(e){if(e.target.closest('.ctrls'))return;ty=e.touches[0].clientY;},{passive:true});
+  feed.addEventListener('touchend',function(e){if(ty==null)return;var dy=e.changedTouches[0].clientY-ty;ty=null;if(Math.abs(dy)>50)go(dy<0?1:-1);},{passive:true});
+  var wl=0;feed.addEventListener('wheel',function(e){if(e.target.closest('.ctrls'))return;e.preventDefault();var now=Date.now();if(now-wl<500)return;if(Math.abs(e.deltaY)<20)return;wl=now;go(e.deltaY>0?1:-1);},{passive:false});
+  /* громкость */
+  vol.addEventListener('input',function(){volume=vol.value/100;soundOn=volume>0;paintVol();});
+  vol.addEventListener('change',function(){track('easter_volume',Math.round(volume*100));});
+  paintVol();
+  /* форма */
   var form=document.getElementById('eggForm'),err=document.getElementById('eggErr');
   form.addEventListener('submit',function(e){e.preventDefault();err.textContent='';var fd=new FormData(form);var payload={role:fd.get('role'),name:fd.get('name'),contact:fd.get('contact'),task:fd.get('task'),vid:vid,ref:document.referrer};
     if(!payload.contact||!payload.task||payload.task.length<10){err.textContent='Нужны контакт и задача хотя бы в одно предложение.';return;}
