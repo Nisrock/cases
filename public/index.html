@@ -190,13 +190,16 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
   body{font-size:12.5px;background:#fff;color:#111}
   nav.top,.hero .glow,.final .glow,.egg,.paw,.cta,.theme,.feed{display:none!important}
   .rv{opacity:1!important;transform:none!important}
-  .hero{padding:10mm 0 6mm;text-align:left}
+  .hero{padding:4mm 0 4mm;text-align:left}
   .hero h1{font-size:30pt}
   .hero h1 span{color:#0a5bd3;background:none;-webkit-text-fill-color:#0a5bd3}
   .hero p.lead{margin:6mm 0 0;font-size:12pt}
   .stats{margin-top:8mm;grid-template-columns:repeat(5,1fr)}
   .stats b{font-size:20pt}
-  section.chapter{padding:8mm 0 2mm;break-before:page}
+  section.chapter{padding:7mm 0 1mm}
+  .flow,.metrics div,.tile,details,.pcard,.stats{break-inside:avoid}
+  .chapter h2,.kicker{break-after:avoid}
+  footer{break-before:avoid;padding:4mm 0}
   .chapter h2{font-size:20pt}
   .flow{box-shadow:none;padding:4mm;margin-top:5mm;gap:4px}
   .flow .node{padding:5px 8px;min-width:0}
@@ -206,7 +209,7 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
   details{break-inside:avoid}summary::after{display:none}summary{padding:3mm 4mm}details .inner{padding:0 4mm 3mm}
   .grid3{gap:6px}.pcard{padding:4mm;box-shadow:none}
   .path{margin-top:6mm}
-  .final{padding:10mm 0 4mm;text-align:left}
+  .final{padding:6mm 0 2mm;text-align:left;break-inside:avoid}
   .final h2{font-size:20pt}
   .final .links{justify-content:flex-start}
   .final .links a:after{content:" · " attr(href);color:#777;font-size:10px}
