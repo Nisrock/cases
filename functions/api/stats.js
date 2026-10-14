@@ -13,6 +13,14 @@ async function listAll(kv, prefix) {
 export async function onRequestGet({ request, env }) {
   const u = new URL(request.url);
   if (!env.ADMIN_KEY || u.searchParams.get('key') !== env.ADMIN_KEY) return json({ ok: false }, 401);
+  if (u.searchParams.get('purge_tests') === '1') {
+    // Удалить тестовые заявки (роль начинается с «Тест» или контакт self) и события тестового посетителя.
+    const wk = await listAll(env.CASES_KV, 'wish:'); let n = 0;
+    for (const k of wk) { const w = await env.CASES_KV.get(k.name, 'json'); if (w && (/^(Тест|test)/i.test(w.role || '') || w.contact === 'self')) { await env.CASES_KV.delete(k.name); n++; } }
+    const ek = await listAll(env.CASES_KV, 'ev:');
+    for (const k of ek) { const e = await env.CASES_KV.get(k.name, 'json'); if (e && e.vid === 'selftest') { await env.CASES_KV.delete(k.name); n++; } }
+    return json({ ok: true, deleted: n });
+  }
   const days = Math.min(90, +(u.searchParams.get('days') || 14));
   const since = Date.now() - days * 86400e3;
   const keys = (await listAll(env.CASES_KV, 'ev:')).filter(k => +k.name.split(':')[2] >= since);
