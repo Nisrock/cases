@@ -16,7 +16,7 @@ export async function onRequestGet({ request, env }) {
   if (u.searchParams.get('purge_tests') === '1') {
     // Удалить тестовые заявки (роль начинается с «Тест» или контакт self) и события тестового посетителя.
     const wk = await listAll(env.CASES_KV, 'wish:'); let n = 0;
-    for (const k of wk) { const w = await env.CASES_KV.get(k.name, 'json'); if (w && (/^(Тест|test)/i.test(w.role || '') || w.contact === 'self')) { await env.CASES_KV.delete(k.name); n++; } }
+    for (const k of wk) { const w = await env.CASES_KV.get(k.name, 'json'); if (w && (/^(Тест|test)/i.test(w.role || '') || w.contact === 'self' || w.contact === '@kaganovichnt')) { await env.CASES_KV.delete(k.name); n++; } }
     const ek = await listAll(env.CASES_KV, 'ev:');
     for (const k of ek) { const e = await env.CASES_KV.get(k.name, 'json'); if (e && e.vid === 'selftest') { await env.CASES_KV.delete(k.name); n++; } }
     return json({ ok: true, deleted: n });
