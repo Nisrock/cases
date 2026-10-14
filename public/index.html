@@ -155,7 +155,10 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 
 /* easter egg */
 .paw{display:inline-block;margin-left:10px;opacity:.35;cursor:pointer;transition:opacity .2s,transform .2s;text-decoration:none;user-select:none;vertical-align:middle;line-height:0}
-.paw svg{width:16px;height:16px;fill:currentColor;display:inline-block}
+.paw svg{width:16px;height:16px;fill:#1d1d1f;display:inline-block}
+:root[data-theme="dark"] .paw svg{fill:#ff6fae}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .paw svg{fill:#ff6fae}}
+.paw{opacity:.55}
 .paw:hover{opacity:1;transform:rotate(-12deg) scale(1.15)}
 .egg{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .egg.open{display:flex}
