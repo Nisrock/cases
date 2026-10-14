@@ -1,0 +1,15 @@
+# Cloudflare Pages: статика из public/, функции из functions/.
+# Личный аккаунт gyglem@gmail.com (профиль wrangler: XDG_CONFIG_HOME=C:\Users\Nikita\.wrangler-personal).
+name = "cases"
+pages_build_output_dir = "public"
+compatibility_date = "2026-06-01"
+
+# KV: заявки из пасхалки (wish:*) и события просмотров (ev:*).
+[[kv_namespaces]]
+binding = "CASES_KV"
+id = "73efdab0b3f547ce8a0aa0b10b35e9db"
+
+# Секреты (ставятся отдельно: npx wrangler pages secret put NAME --project-name cases):
+#   TG_TOKEN  — токен личного бота для уведомлений о заявках
+#   TG_CHAT   — chat id, куда слать
+#   ADMIN_KEY — ключ для GET /api/stats

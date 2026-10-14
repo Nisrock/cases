@@ -152,6 +152,70 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* easter egg */
+.paw{display:inline-block;margin-left:10px;opacity:.28;cursor:pointer;font-size:14px;transition:opacity .2s,transform .2s;text-decoration:none;user-select:none}
+.paw:hover{opacity:1;transform:rotate(-12deg) scale(1.15)}
+.egg{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.egg.open{display:flex}
+.egg .box{position:relative;width:min(960px,100%);max-height:min(92vh,760px);background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:360px 1fr;overflow:hidden;animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+.egg .close{position:absolute;top:12px;right:12px;z-index:3;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:20px;cursor:pointer;display:grid;place-items:center;padding:0}
+.feed{position:relative;background:#000;height:min(92vh,760px)}
+.feed .scroller{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none}
+.feed .scroller::-webkit-scrollbar{display:none}
+.feed .slide{height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:grid;place-items:center;position:relative}
+.feed video{width:100%;height:100%;object-fit:cover}
+.feed .ctr{position:absolute;right:12px;bottom:14px;display:flex;flex-direction:column;gap:8px;z-index:2}
+.feed .ctr button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.45);color:#fff;font-size:18px;cursor:pointer;backdrop-filter:blur(6px)}
+.feed .cnt{position:absolute;left:14px;top:14px;z-index:2;font-size:12px;color:#fff;background:rgba(0,0,0,.45);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
+.egg .txt{padding:36px 34px 28px;overflow-y:auto}
+.egg h3{font-size:26px;font-weight:800;line-height:1.15;margin:0 0 12px}
+.egg p{margin:0 0 12px;color:var(--fg2);font-size:15.5px}
+.egg form{margin-top:18px;display:grid;gap:10px}
+.egg .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.egg input,.egg textarea,.egg select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--fg);font:inherit;font-size:15px}
+.egg textarea{min-height:110px;resize:vertical}
+.egg .seg{display:flex;gap:6px;flex-wrap:wrap}
+.egg .seg label{padding:8px 14px;border-radius:999px;border:1px solid var(--line);cursor:pointer;font-size:14px;color:var(--fg2)}
+.egg .seg input{display:none}
+.egg .seg input:checked+span{color:var(--acc)}
+.egg .seg label:has(input:checked){border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.egg .ok{display:none;padding:18px;border-radius:14px;background:color-mix(in srgb,var(--acc) 12%,transparent);color:var(--fg);font-weight:600}
+.egg .err{color:#e5484d;font-size:14px;min-height:18px}
+/* print / PDF */
+@media print{
+  :root{--bg:#fff;--bg2:#fff;--fg:#111;--fg2:#444;--mut:#777;--line:#ddd;--card:#fff;--card2:#f3f3f5;--acc:#0a5bd3;--shadow:none}
+  @page{size:A4;margin:14mm 12mm}
+  body{font-size:12.5px;background:#fff;color:#111}
+  nav.top,.hero .glow,.final .glow,.egg,.paw,.cta,.theme,.feed{display:none!important}
+  .rv{opacity:1!important;transform:none!important}
+  .hero{padding:10mm 0 6mm;text-align:left}
+  .hero h1{font-size:30pt}
+  .hero h1 span{color:#0a5bd3;background:none;-webkit-text-fill-color:#0a5bd3}
+  .hero p.lead{margin:6mm 0 0;font-size:12pt}
+  .stats{margin-top:8mm;grid-template-columns:repeat(5,1fr)}
+  .stats b{font-size:20pt}
+  section.chapter{padding:8mm 0 2mm;break-before:page}
+  .chapter h2{font-size:20pt}
+  .flow{box-shadow:none;padding:4mm;margin-top:5mm;gap:4px}
+  .flow .node{padding:5px 8px;min-width:0}
+  .flow .node b{font-size:10.5px}.flow .node small{font-size:9px}
+  .metrics{gap:6px;margin-top:5mm}.metrics div{padding:4mm;box-shadow:none}.metrics b{font-size:20pt;-webkit-text-fill-color:#111;background:none;color:#111}
+  .cols{gap:6px}.tile{padding:4mm}
+  details{break-inside:avoid}summary::after{display:none}summary{padding:3mm 4mm}details .inner{padding:0 4mm 3mm}
+  .grid3{gap:6px}.pcard{padding:4mm;box-shadow:none}
+  .path{margin-top:6mm}
+  .final{padding:10mm 0 4mm;text-align:left}
+  .final h2{font-size:20pt}
+  .final .links{justify-content:flex-start}
+  .final .links a:after{content:" · " attr(href);color:#777;font-size:10px}
+  .pdfcontact{display:block!important;margin-top:4mm;font-size:12pt}
+  a{text-decoration:none;color:inherit}
+  footer{border:0}
+}
+.pdfcontact{display:none}
+@media(max-width:760px){.egg{padding:0}.egg .box{grid-template-columns:1fr;grid-template-rows:46vh 1fr;max-height:100vh;height:100vh;border-radius:0}.feed{height:46vh}.egg .txt{padding:22px 18px 28px}.egg .row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -274,6 +338,7 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
           <li>Нецелевых (команда меньше 5 или оборот ниже порога) бот мягко отсеивает и закрывает сделку автоматически.</li>
           <li>Статистика: воронка по диалогам, медианы ответа по менеджерам, источники с раскрытием до страницы и переписки.</li>
           <li>Ловушка, которую поймал: автоназначение ответственного в CRM система считала перехватом человеком и глушила бота. Закрыто списком служебных пользователей и окном 60 секунд.</li>
+          <li style="list-style:none;margin-left:-18px;color:var(--mut);font-size:13.5px">Дочитали досюда? Значит, вы из тех, кто изучает, а не листает. Для вас тут кое-что есть <a class="paw" href="#" data-egg title="для тех, кто читает внимательно">🐾</a></li>
         </ul>
         <div class="stack"><i>Node.js</i><i>Cloudflare Pages + D1</i><i>amoCRM API</i><i>amojo</i><i>Workers AI / Claude</i><i>Claude Agent SDK</i><i>SQL</i></div>
       </div>
@@ -283,7 +348,7 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 
 <section class="chapter" id="shtab">
   <div class="wrap">
-    <div class="kicker rv">Кейс 03 · Центр управления компанией</div>
+    <div class="kicker rv">Кейс 03 · Центр управления компанией <a class="paw" href="#" data-egg title="для тех, кто читает внимательно">🐾</a></div>
     <h2 class="rv">Один экран у собственника вместо десятка таблиц. Подрядчики просили 150 000 ₽ в месяц.</h2>
     <p class="problem rv">Цифры жили в Google-таблицах, CRM, АТС и Метрике. Собственник хотел план и факт в одном месте и ответы на вопросы без аналитика.</p>
 
@@ -401,7 +466,9 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
         Написать в Telegram
       </a>
       <a class="btn ghost" href="https://hh.ru/resume/07d81c4cff11414a990039ed1f52674b374355">Резюме на hh.ru</a>
+      <a class="btn ghost" href="nikita-kaganovich-cases.pdf" download>Скачать PDF</a>
     </div>
+    <p class="pdfcontact">Telegram: @kaganovichnt · https://t.me/kaganovichnt · Страница: https://cases-cc2.pages.dev/</p>
     <div class="links rv">
       <a href="https://career.habr.com/nisrock">Хабр Карьера</a>
       <a href="https://www.linkedin.com/in/никита-каганович-49a011444">LinkedIn</a>
@@ -411,6 +478,47 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
 </section>
 
 <footer>Никита Каганович · 2026 · данные компании и клиентов не раскрываются, цифры агрегированы</footer>
+
+<div class="egg" id="egg" role="dialog" aria-modal="true" aria-label="Пауза с котиками">
+  <div class="box">
+    <button class="close" id="eggClose" aria-label="Закрыть">×</button>
+    <div class="feed">
+      <div class="cnt" id="eggCnt">1 / 5</div>
+      <div class="scroller" id="eggFeed">
+        <div class="slide"><video src="cats/cat1.mp4" muted loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat2.mp4" muted loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat3.mp4" muted loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat4.mp4" muted loop playsinline preload="metadata"></video></div>
+        <div class="slide"><video src="cats/cat5.mp4" muted loop playsinline preload="metadata"></video></div>
+      </div>
+      <div class="ctr"><button id="eggUp" aria-label="Предыдущий">↑</button><button id="eggDown" aria-label="Следующий">↓</button></div>
+    </div>
+    <div class="txt">
+      <h3>Вы дошли до середины. Сделайте паузу и полюбуйтесь котиками.</h3>
+      <p>Листайте ленту, как в TikTok. А пока коты делают своё дело, предложение в благодарность за внимательность.</p>
+      <p><b>Если вы HR или рекрутер:</b> напишите прямо здесь одну рутинную задачу, которая съедает ваше время. Я попробую её автоматизировать или напишу, как это сделать. Бесплатно, потому что вы дочитали.</p>
+      <p><b>Если вы основатель или руководитель:</b> тоже пишите. Разберу, где в вашем процессе ИИ сэкономит деньги, а где не стоит и пробовать.</p>
+      <form id="eggForm" novalidate>
+        <div class="seg">
+          <label><input type="radio" name="role" value="HR / рекрутер" checked><span>HR / рекрутер</span></label>
+          <label><input type="radio" name="role" value="Основатель / руководитель"><span>Основатель / руководитель</span></label>
+          <label><input type="radio" name="role" value="Другое"><span>Другое</span></label>
+        </div>
+        <div class="row">
+          <input name="name" placeholder="Как вас зовут" autocomplete="name">
+          <input name="contact" placeholder="Telegram или почта для ответа" autocomplete="email" required>
+        </div>
+        <textarea name="task" placeholder="Рутинная задача: что делаете руками, как часто, в каких инструментах" required></textarea>
+        <div class="err" id="eggErr"></div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button class="btn primary" type="submit" id="eggSend">Отправить задачу</button>
+          <span style="font-size:13px;color:var(--mut)">Отвечу в течение двух дней</span>
+        </div>
+      </form>
+      <div class="ok" id="eggOk">Получил. Спасибо за внимательность, отвечу лично. А котики остаются с вами.</div>
+    </div>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -423,11 +531,52 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
     root.setAttribute('data-theme',next);
     try{localStorage.setItem('theme',next);}catch(e){}
   });
+  var PRINT=/[?&]print=1/.test(location.search);
+  if(PRINT){root.setAttribute('data-theme','light');document.querySelectorAll('details').forEach(function(d){d.open=true;});document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});document.querySelectorAll('[data-count]').forEach(function(el){el.textContent=el.getAttribute('data-count');});}
+  addEventListener('beforeprint',function(){document.querySelectorAll('details').forEach(function(d){d.open=true;});});
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,to=+el.getAttribute('data-count');if(reduce){el.textContent=to;return;}var t0=null;function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/900);p=1-Math.pow(1-p,3);el.textContent=Math.round(to*p);if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});},{threshold:.5});
   document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el);});
+
+  /* ---------- аналитика: своя + Метрика/VK (если заданы ID) ---------- */
+  var YM_ID=0, VK_PIXEL='';   // подставить номер счётчика Яндекс Метрики и id пикселя VK Ads
+  if(YM_ID){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(YM_ID,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});}
+  if(VK_PIXEL){var s=document.createElement('script');s.src='https://vk.com/js/api/openapi.js?169';s.onload=function(){try{VK.Retargeting.Init(VK_PIXEL);VK.Retargeting.Hit();}catch(e){}};document.head.appendChild(s);}
+  var vid;try{vid=localStorage.getItem('vid');if(!vid){vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36);localStorage.setItem('vid',vid);}}catch(e){vid='anon'}
+  var q=[],flushT;
+  function theme(){return root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}
+  function flush(){if(!q.length)return;var body=JSON.stringify({vid:vid,ref:document.referrer,utm:location.search.slice(0,300),screen:innerWidth+'x'+innerHeight,theme:theme(),events:q.splice(0)});try{if(navigator.sendBeacon)navigator.sendBeacon('/api/ev',new Blob([body],{type:'application/json'}));else fetch('/api/ev',{method:'POST',body:body,keepalive:true});}catch(e){}}
+  function track(ev,data){q.push({ev:ev,data:data==null?'':String(data)});if(YM_ID)try{ym(YM_ID,'reachGoal',ev,{data:data});}catch(e){}clearTimeout(flushT);flushT=setTimeout(flush,1500);}
+  track('view',location.pathname);
+  var marks={25:0,50:0,75:0,100:0};
+  addEventListener('scroll',function(){var h=document.documentElement,p=Math.round((h.scrollTop+innerHeight)/h.scrollHeight*100);[25,50,75,100].forEach(function(m){if(p>=m&&!marks[m]){marks[m]=1;track('scroll',m);}});},{passive:true});
+  var t0=Date.now();[30,60,120,300].forEach(function(s){setTimeout(function(){track('time',s);},s*1000);});
+  document.addEventListener('click',function(e){var a=e.target.closest('a,button,summary');if(!a)return;var h=a.getAttribute('href')||'';var what=h.indexOf('t.me')>-1?'telegram':h.indexOf('hh.ru')>-1?'hh':h.indexOf('habr')>-1?'habr':h.indexOf('linkedin')>-1?'linkedin':h.indexOf('github')>-1?'github':a.id==='theme'?'theme':a.tagName==='SUMMARY'?'details:'+(a.closest('section')||{}).id:'';if(what)track('click',what);});
+  addEventListener('pagehide',function(){track('time',Math.round((Date.now()-t0)/1000));flush();});
+  addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush();});
+
+  /* ---------- пасхалка ---------- */
+  var egg=document.getElementById('egg'),feed=document.getElementById('eggFeed'),slides=feed.querySelectorAll('.slide'),cnt=document.getElementById('eggCnt'),cur=0;
+  function playCur(){slides.forEach(function(s,i){var v=s.querySelector('video');if(i===cur){v.play().catch(function(){});}else{v.pause();}});cnt.textContent=(cur+1)+' / '+slides.length;}
+  function openEgg(src){egg.classList.add('open');document.body.style.overflow='hidden';cur=0;feed.scrollTop=0;playCur();track('easter_open',src);}
+  function closeEgg(){egg.classList.remove('open');document.body.style.overflow='';slides.forEach(function(s){s.querySelector('video').pause();});}
+  document.querySelectorAll('[data-egg]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openEgg(a.closest('section').id);});});
+  document.getElementById('eggClose').addEventListener('click',closeEgg);
+  egg.addEventListener('click',function(e){if(e.target===egg)closeEgg();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&egg.classList.contains('open'))closeEgg();});
+  var typed='';document.addEventListener('keydown',function(e){if(e.key.length!==1)return;typed=(typed+e.key.toLowerCase()).slice(-3);if((typed==='cat'||typed==='кот')&&!egg.classList.contains('open'))openEgg('keys');});
+  function go(d){cur=Math.max(0,Math.min(slides.length-1,cur+d));slides[cur].scrollIntoView({behavior:'smooth',block:'start'});}
+  document.getElementById('eggUp').addEventListener('click',function(){go(-1);});
+  document.getElementById('eggDown').addEventListener('click',function(){go(1);});
+  var st;feed.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var i=Math.round(feed.scrollTop/feed.clientHeight);if(i!==cur){cur=i;playCur();track('easter_swipe',cur+1);}},120);},{passive:true});
+  var form=document.getElementById('eggForm'),err=document.getElementById('eggErr');
+  form.addEventListener('submit',function(e){e.preventDefault();err.textContent='';var fd=new FormData(form);var payload={role:fd.get('role'),name:fd.get('name'),contact:fd.get('contact'),task:fd.get('task'),vid:vid,ref:document.referrer};
+    if(!payload.contact||!payload.task||payload.task.length<10){err.textContent='Нужны контакт и задача хотя бы в одно предложение.';return;}
+    var b=document.getElementById('eggSend');b.disabled=true;b.textContent='Отправляю…';
+    fetch('/api/wish',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)}).then(function(r){return r.json();}).then(function(j){if(j.ok){form.style.display='none';document.getElementById('eggOk').style.display='block';track('easter_submit',payload.role);}else{err.textContent=j.error||'Не отправилось, напишите в Telegram @kaganovichnt';b.disabled=false;b.textContent='Отправить задачу';}}).catch(function(){err.textContent='Не отправилось, напишите в Telegram @kaganovichnt';b.disabled=false;b.textContent='Отправить задачу';});
+  });
 })();
 </script>
 </body>
