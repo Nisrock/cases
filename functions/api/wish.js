@@ -14,13 +14,18 @@ export async function onRequestPost({ request, env }) {
   };
   if (!rec.task || !rec.contact) return json({ ok: false, error: 'нужны контакт и задача' }, 400);
   if (rec.task.length < 10) return json({ ok: false, error: 'опиши задачу чуть подробнее' }, 400);
-  await env.CASES_KV.put(`wish:${Date.now()}`, JSON.stringify(rec), { expirationTtl: 60 * 60 * 24 * 365 });
+  let tg = 'off';
   if (env.TG_TOKEN && env.TG_CHAT) {
     const text = `🐾 Заявка со страницы кейсов\n\nКто: ${rec.role || '—'} ${rec.name}\nКонтакт: ${rec.contact}\nОткуда: ${rec.city || rec.country || '?'}\n\nЗадача:\n${rec.task}`;
-    await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/sendMessage`, {
-      method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ chat_id: env.TG_CHAT, text, disable_web_page_preview: true }),
-    }).catch(() => {});
+    try {
+      const r = await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/sendMessage`, {
+        method: 'POST', headers: { 'content-type': 'application/json; charset=utf-8' },
+        body: JSON.stringify({ chat_id: env.TG_CHAT, text, disable_web_page_preview: true }),
+      });
+      tg = r.ok ? 'sent' : `http ${r.status}: ${(await r.text()).slice(0, 120)}`;
+    } catch (e) { tg = 'error: ' + String(e).slice(0, 120); }
   }
-  return json({ ok: true });
+  rec.tg = tg;
+  await env.CASES_KV.put(`wish:${Date.now()}`, JSON.stringify(rec), { expirationTtl: 60 * 60 * 24 * 365 });
+  return json({ ok: true, tg });
 }
