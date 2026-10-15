@@ -612,7 +612,7 @@ footer{padding:28px 0 40px;color:var(--mut);font-size:13px;text-align:center;bor
   addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush();});
 
   /* ---------- пасхалка ---------- */
-  var SRCS=['cats/cat1.mp4','cats/cat2.mp4','cats/cat3.mp4','cats/cat4.mp4','cats/cat5.mp4'];
+  var SRCS=['cats/cat1.mp4?v=2','cats/cat2.mp4?v=2','cats/cat3.mp4?v=2','cats/cat4.mp4?v=2','cats/cat5.mp4?v=2'];
   var egg=document.getElementById('egg'),feed=document.getElementById('eggFeed'),video=document.getElementById('eggVideo'),cnt=document.getElementById('eggCnt'),replay=document.getElementById('eggReplay'),cur=0;
   var vbar=document.getElementById('eggVbar'),fill=document.getElementById('eggFill'),vol=document.getElementById('eggVol'),soundOn=true,volume=0.1;
   function paintVol(){fill.style.height=Math.round(volume*100)+'%';vbar.classList.toggle('muted',!soundOn||volume===0);vbar.classList.toggle('low',soundOn&&volume>0&&volume<0.4);video.volume=volume;video.muted=!soundOn;}
