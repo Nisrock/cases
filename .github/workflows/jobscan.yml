@@ -1,0 +1,27 @@
+name: Утренний дайджест вакансий
+on:
+  schedule:
+    - cron: '30 5 * * 1-5'   # 08:30 МСК по будням
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Скан hh и дайджест в Telegram
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
+          HH_TOKEN: ${{ secrets.HH_TOKEN }}
+        run: python scripts/jobscan.py
+      - name: Сохранить список увиденных вакансий
+        run: |
+          git config user.name jobscan
+          git config user.email jobscan@users.noreply.github.com
+          git add scripts/seen.json
+          git diff --cached --quiet || git commit -m "jobscan: seen $(date -u +%F)"
+          git push
